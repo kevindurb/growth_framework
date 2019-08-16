@@ -1,6 +1,5 @@
-import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js';
+const htm = window.htm;
+const preact = window.preact;
 
-export {
-  html,
-  render,
-};
+export const html = htm.bind(preact.h);
+export const render = preact.render;

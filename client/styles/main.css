@@ -1,0 +1,17 @@
+html {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#root {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+}

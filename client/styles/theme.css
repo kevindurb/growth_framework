@@ -1,0 +1,6 @@
+html.dark {
+  --color-primary: #a0f;
+  --color-foreground: #ddd;
+  --color-midground: #666;
+  --color-background: #000;
+}
