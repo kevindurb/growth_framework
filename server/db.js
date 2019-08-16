@@ -12,6 +12,9 @@ const getClient = async () => {
   return client;
 }
 
+const getSingle = (result) => result.rows[0];
+
 module.exports = {
   getClient,
+  getSingle,
 };
