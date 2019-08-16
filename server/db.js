@@ -2,11 +2,12 @@ const { Client } = require('pg');
 
 let client;
 
-const getClient = () => {
+const getClient = async () => {
   if (!client) {
     client = new Client();
-    await client.connect();
   }
+
+  await client.connect();
 
   return client;
 }

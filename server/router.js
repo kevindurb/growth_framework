@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const promisify = require('./promisify');
 
 router.get('/status', (req, res) => {
   res.end('OK');
@@ -6,7 +7,7 @@ router.get('/status', (req, res) => {
 
 router.get(
   '/customers/:customerId',
-  require('./transactions/customersTransactions').getCustomer,
+  promisify(require('./transactions/customersTransactions').getCustomer),
 );
 
 module.exports = router;
