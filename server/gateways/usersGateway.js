@@ -14,5 +14,14 @@ module.exports = {
       user.hash,
       user.customerId
     ]).then(db.getSingle);
+  },
+  async getUserByEmail(email) {
+    const client = await db.getClient();
+    const sql = `
+      SELECT *
+      FROM users
+      WHERE email = $1
+    `;
+    return client.query(sql, [email]).then(db.getSingle);
   }
 };

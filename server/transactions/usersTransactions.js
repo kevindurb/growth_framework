@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const usersGateway = require('../gateways/usersGateway');
+const userSerializer = require('../serializers/userSerializer');
 
 const SALT_ROUNDS = 10;
 
@@ -13,12 +14,15 @@ module.exports = {
 
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
 
-    const user = {
+    const data = {
       name: '',
       email,
       hash,
       customerId,
     };
-    return usersGateway.createUser(user);
+
+    const user = await usersGateway.createUser(data);
+
+    return userSerializer(user);
   },
 };

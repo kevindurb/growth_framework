@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "reset-db": "psql -f ./ddl/schema.sql postgres",
-    "populate-db": "psql -f ./ddl/data.sql postgres"
+    "populate-db": "psql -f ./ddl/data.sql postgres",
+    "session-db": "psql -f node_modules/connect-pg-simple/table.sql growth"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,10 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "connect-pg-simple": "^6.0.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
     "helmet": "^3.20.0",
     "pg": "^7.12.1"
   }

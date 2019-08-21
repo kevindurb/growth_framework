@@ -1,23 +1,25 @@
 const router = require('express').Router();
 const promisify = require('./promisify');
 
-router.get('/status', (req, res) => {
-  res.end('OK');
-});
+const customersTransactions = require('./transactions/customersTransactions');
+const usersTransactions = require('./transactions/usersTransactions');
+const sessionTransactions = require('./transactions/sessionTransactions');
+
+router.get('/status', promisify(() => ({ status: 'OK' })));
 
 router.get(
   '/customers/:customerId',
-  promisify(require('./transactions/customersTransactions').getCustomer),
+  promisify(customersTransactions.getCustomer),
 );
 
 router.post(
   '/users',
-  promisify(require('./transactions/usersTransactions').createUser),
+  promisify(usersTransactions.createUser),
 );
 
 router.post(
   '/session',
-  promisify(require('./transactions/sessionTransactions').login),
+  promisify(sessionTransactions.login),
 );
 
 module.exports = router;
