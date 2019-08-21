@@ -1,5 +1,13 @@
-module.exports = user => ({
-  id: user.id,
-  name: user.name,
-  email: user.email,
+const {
+  object,
+  string,
+} = require('yup');
+
+const userSchema = object().shape({
+  id: string(),
+  name: string(),
+  email: string(),
+  hash: string().strip(),
 });
+
+module.exports = user => userSchema.cast(user);

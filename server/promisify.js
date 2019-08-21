@@ -1,9 +1,12 @@
 const BadRequest = require('./errors/BadRequest');
 
-module.exports = (handler) => async (request, response) => {
+module.exports = (...handlers) => async (request, response) => {
   try {
-    const result = await handler(request);
-    response.json(result);
+    let data = request;
+    for (let handler of handlers) {
+      data = await handler(data);
+    }
+    response.json(data);
   } catch (error) {
     if (error instanceof BadRequest) {
       response.status(400);

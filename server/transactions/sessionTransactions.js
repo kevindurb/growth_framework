@@ -16,7 +16,7 @@ module.exports = {
       throw new BadRequest('Email or password invalid.');
     }
 
-    const matches = await bcrypt.compare(password, user.hash);
+    const matches = await bcrypt.compare(password, user.hash.toString());
 
     if (!matches) {
       throw new BadRequest('Email or password invalid.');
@@ -24,6 +24,10 @@ module.exports = {
 
     const serialized = userSerializer(user);
     request.session.user = serialized;
+
     return serialized;
   },
+  async getMe(request) {
+    return userSerializer(await usersGateway.getUserById(request.session.user.id));
+  }
 };

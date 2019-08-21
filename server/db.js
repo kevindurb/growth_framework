@@ -1,15 +1,9 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-let client;
+const pool = new Pool();
 
 const getClient = async () => {
-  if (!client) {
-    client = new Client();
-  }
-
-  await client.connect();
-
-  return client;
+  return pool.connect();
 }
 
 const getSingle = (result) => result.rows[0];
