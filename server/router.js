@@ -8,6 +8,7 @@ const sessionTransactions = require('./transactions/sessionTransactions');
 
 const loginRequestValidator = require('./validators/loginRequestValidator');
 const loggedInValidator = require('./validators/loggedInValidator');
+const createCustomerValidator = require('./validators/createCustomerValidator');
 
 router.get('/status', promisify(() => ({ status: 'OK' })));
 
@@ -20,10 +21,26 @@ router.get(
 );
 
 router.post(
+  '/customers',
+  promisify(
+    validateRequest(createCustomerValidator),
+    customersTransactions.createCustomer
+  ),
+);
+
+router.post(
   '/users',
   promisify(
     validateRequest(loggedInValidator),
     usersTransactions.createUser
+  ),
+);
+
+router.get(
+  '/users',
+  promisify(
+    validateRequest(loggedInValidator),
+    usersTransactions.getAllUsers
   ),
 );
 

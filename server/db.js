@@ -7,8 +7,10 @@ const getClient = async () => {
 }
 
 const getSingle = (result) => result.rows[0];
+const getAll = (result) => result.rows;
 
 module.exports = {
   getClient,
   getSingle,
+  getAll,
 };

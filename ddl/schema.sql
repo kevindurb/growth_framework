@@ -20,6 +20,8 @@ CREATE TABLE users (
   name citext NOT NULL,
   email citext NOT NULL,
   hash bytea NOT NULL,
+  verified boolean NOT NULL DEFAULT false,
+  admin boolean NOT NULL DEFAULT false,
   updated_on TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   created_on TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   UNIQUE(email)

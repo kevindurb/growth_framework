@@ -21,6 +21,7 @@ module.exports = {
       SELECT *
       FROM users
       WHERE email = $1
+      LIMIT 1
     `;
     return client.query(sql, [email]).then(db.getSingle);
   },
@@ -30,7 +31,17 @@ module.exports = {
       SELECT *
       FROM users
       WHERE id = $1
+      LIMIT 1
     `;
     return client.query(sql, [id]).then(db.getSingle);
+  },
+  async getUsersForCustomer(customerId) {
+    const client = await db.getClient();
+    const sql = `
+      SELECT *
+      FROM users
+      WHERE customer_id = $1
+    `;
+    return client.query(sql, [customerId]).then(db.getAll);
   }
 };
