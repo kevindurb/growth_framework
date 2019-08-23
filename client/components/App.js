@@ -5,14 +5,14 @@ import { Dashboard } from '/components/Dashboard.js';
 import { compose } from '/utils/component.js';
 
 const enhance = compose(
-  inject('customersService'),
+  inject('routerService'),
   observer,
 );
 
-export const App = enhance(({ customersService }) => {
+export const App = enhance(({ routerService }) => {
+  const Component = routerService.currentComponent;
+
   return html`
-    <${Dashboard}
-      customer=${customersService.getCustomer(5)}
-    />
+    <${Component} />
   `;
 });
