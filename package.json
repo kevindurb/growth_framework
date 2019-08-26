@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "reset-db": "psql -f ./ddl/schema.sql postgres",
     "populate-db": "psql -f ./ddl/data.sql postgres",
-    "session-db": "psql -f node_modules/connect-pg-simple/table.sql growth"
+    "session-db": "psql -f node_modules/connect-pg-simple/table.sql growth",
+    "test": "jest --forceExit"
   },
   "repository": {
     "type": "git",

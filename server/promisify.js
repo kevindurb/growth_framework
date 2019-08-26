@@ -6,6 +6,12 @@ module.exports = (...handlers) => async (request, response) => {
     for (let handler of handlers) {
       data = await handler(data);
     }
+
+    if (request.method === 'POST') {
+      response.status(201);
+    } else {
+      response.status(200);
+    }
     response.json(data);
   } catch (error) {
     if (error instanceof BadRequest) {
