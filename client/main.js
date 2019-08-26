@@ -1,5 +1,5 @@
 import { html, render } from '/html.js';
-import { Provider } from '/mobx.js';
+import { Provider, spy } from '/mobx.js';
 import { buildContainer } from '/container.js';
 import { App } from '/components/App.js';
 
@@ -13,3 +13,5 @@ render(
   `,
   document.getElementById('root')
 );
+
+spy(console.log.bind(console));

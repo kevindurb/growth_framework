@@ -11,7 +11,7 @@ export class CustomersService {
 
   getCustomer(id) {
     if (!this.customers[id]) {
-      return this.fetchCustomer(id);
+      this.fetchCustomer(id);
     }
     return this.customers[id];
   }
