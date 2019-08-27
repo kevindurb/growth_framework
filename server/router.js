@@ -60,4 +60,12 @@ router.post(
   ),
 );
 
+router.delete(
+  '/session',
+  promisify(
+    validateRequest(loggedInValidator),
+    sessionTransactions.logout,
+  ),
+);
+
 module.exports = router;

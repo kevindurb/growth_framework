@@ -29,5 +29,8 @@ module.exports = {
   },
   async getMe(request) {
     return userSerializer(await usersGateway.getUserById(request.session.user.id));
+  },
+  logout(request) {
+    request.session.destroy();
   }
 };
